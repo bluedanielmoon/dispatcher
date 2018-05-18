@@ -1,0 +1,25 @@
+.map-control{
+  width: 1500px;
+  height: 600px;
+  left: 300px;
+  position: absolute;
+}
+#map{
+  width: 900px;
+  height: 600px;
+  display: inline-block;
+}
+.lorem {
+  font-style: italic;
+  color: #AAA;
+}
+.control-panel{
+  display: inline-block;
+  width: 500px;
+  height: 600px;
+  vertical-align:top;
+}
+.config-panel,.car-panel{
+  border-bottom:2px solid #000;
+  padding-bottom: 20px;
+}

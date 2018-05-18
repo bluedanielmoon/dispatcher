@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<meta name="description" content="" />
+<meta name="author" content="" />
+	<title>调度系统</title>
+	
+	<link href="static/favicon.ico" rel="icon" type="image/x-icon" >
+
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="css/common/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="css/sider.css" rel="stylesheet" type="text/css"/>
+	<link href="css/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
+	<link href="css/bootstrap/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+	<!-- END GLOBAL MANDATORY STYLES -->
+
+<style>
+
+</style>
+</head>
+<body>
+	
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><span class="navbar-title">矿山车辆调度系统</span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+          	<li><a href="#">邮箱</a></li>
+            <li><a href="#">个人信息</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="搜索">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 sidebar">
+	        <dl class="list_dl">
+		        <dt class="list_dt">
+		            <span class="_after"></span>
+		            <span>任务调度</span>
+		            <i class="list_dt_icon"></i>
+		        </dt>
+		        <dd class="list_dd">
+		            <ul>
+		                <li id="taskList" class="list_li" onclick="dispatcher.changeConsole('console-table','taskList')">任务列表</li>
+		                <li id="buildTask" class="list_li" onclick="dispatcher.changeConsole('console-task','buildTask')">创建任务</li>
+		            </ul>
+		        </dd>
+		        <dt class="list_dt">
+		            <span class="_after"></span>
+		            <span>运行监控</span>
+		            <i class="list_dt_icon"></i>
+		        </dt>
+		        <dd class="list_dd">
+		            <ul>
+		                <li id="normCars" class="list_li" onclick="dispatcher.changeConsole('console-table','normCars')">运行车辆</li>
+		                <li class="list_li">故障车辆</li>
+		            </ul>
+		        </dd>
+		        <dt class="list_dt">
+		            <span class="_after"></span>
+		            <span>地图管理</span>
+		            <i class="list_dt_icon"></i>
+		        </dt>
+		        <dd class="list_dd">
+		            <ul>
+		                <li class="list_li" onclick="dispatcher.changeConsole('console-mapHeader','siteList')">地图编辑</li>
+		                <li class="list_li">地图查找</li>
+		                <li class="list_li">地图同步</li>
+		            </ul>
+		        </dd>
+		        <dt class="list_dt">
+		            <span class="_after"></span>
+		            <span>信息管理</span>
+		            <i class="list_dt_icon"></i>
+		        </dt>
+		        <dd class="list_dd">
+		            <ul>
+		                <li class="list_li" onclick="dispatcher.changeConsole('console-table','carManage')">车辆管理</li>
+		                <li class="list_li" onclick="dispatcher.changeConsole('console-table','staffManage')">人员信息管理</li>
+		            </ul>
+		        </dd>
+		        <dt class="list_dt">
+		            <span class="_after"></span>
+		            <span>数据统计</span>
+		            <i class="list_dt_icon"></i>
+		        </dt>
+		        <dd class="list_dd">
+		            <ul>
+		                <li class="list_li" onclick="dispatcher.changeConsole('console-chart','produceChart')">生产统计</li>
+		                <li class="list_li" onclick="dispatcher.changeConsole('console-chart','workChart')">车辆运行统计</li>
+		            </ul>
+		        </dd>
+		        <dt class="list_dt">
+		            <span class="_after"></span>
+		            <span>系统设置</span>
+		            <i class="list_dt_icon"></i>
+		        </dt>
+		        <dd class="list_dd">
+		            <ul>
+		                <li class="list_li">命令设置</li>
+		                <li class="list_li" onclick="dispatcher.changeConsole('console-mapSet','mapSet')">地图设置</li>
+		                <li class="list_li list_dtt">
+		                	<span class="_after"></span>
+		                	<span>通信设置</span>
+		                	<i class="list2_dt_icon"></i>
+		                	<ul class="list_ul">
+							    <li class="list_lii">wifi</li>
+							    <li class="list_lii">4g</li>
+							    <li class="list_lii">数传电台</li>
+							</ul>
+		                </li>
+		            </ul>
+		        </dd>
+	        </dl>
+          
+        </div>
+        
+        <div class="col-md-10 col-md-offset-2 main">
+        	<div class="row" >
+	        	<div id="cover">
+				</div>
+	 			<div class="col-md-9">
+	 				<div id="map"></div>
+	 			</div>
+	 			<div class="col-md-3">
+	 				<div id="mapInfo" class="panel panel-success">
+					    <div class="panel-heading">
+					        <h3 class="panel-title">地图信息</h3>
+					    </div>
+					    <div class="panel-body">
+				        	
+				        	<p><label>名称：&nbsp;&nbsp;</label>3号站</p>
+				        	<p><label>位置：&nbsp;&nbsp;</label>青山路和嵩山路交叉口</p>
+				        	<p><label>联系方式：&nbsp;&nbsp;</label>029-88765435</p>
+					    </div>
+					</div>
+					<div class="panel panel-success">
+					    <div class="panel-heading">
+					        <h3 class="panel-title">运行车辆信息</h3>
+					    </div>
+					    <div class="panel-body">
+					    	<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>编号</th>
+										<th>位置</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>青山路</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>长山路</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>松山路</td>
+									</tr>
+								</tbody>
+							</table>
+					    </div>
+					</div>
+	 				
+	 			</div>
+	 			
+ 			</div>
+ 			
+ 			<div class="row" >
+ 				<div id="console" class="col-md-9 ">
+	 				<div id="console-mapHeader" class="col-md-6 col-md-offset-3 console-item map-edit">
+	 					<div class="btn-toolbar" role="toolbar">
+							<div class="btn-group">
+							    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+							        	区域<span class="caret"></span>
+							    </button>
+							    <ul class="dropdown-menu">
+							    	<li><a href="#" onclick="dispatcher.changeConsole('console-mapHeader','blockList')">列表</a></li>
+							        <li><a href="#" onclick="dispatcher.changeConsole('console-mapHeader','blockEdit')">编辑</a></li>
+							        <li><a href="#" onclick="dispatcher.changeConsole('console-blockPlus','blockPlus')">添加</a></li>
+							    </ul>
+							</div>
+							<div class="btn-group">
+							    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+							        	道路<span class="caret"></span>
+							    </button>
+							    <ul class="dropdown-menu">
+							    	<li><a href="#" onclick="dispatcher.changeConsole('console-mapHeader','roadList')">列表</a></li>
+							        <li><a href="#" onclick="dispatcher.changeConsole('console-mapHeader','roadEdit')">编辑</a></li>
+							        <li><a href="#" onclick="dispatcher.changeConsole('console-roadPlus','roadPlus')">添加</a></li>
+							    </ul>
+						    </div>
+							<div class="btn-group">
+							    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+							        	站点<span class="caret"></span>
+							    </button>
+							    <ul class="dropdown-menu">
+							    	<li><a href="#" onclick="dispatcher.changeConsole('console-mapHeader','siteList')">列表</a></li>
+							        <li><a href="#" onclick="dispatcher.changeConsole('console-mapHeader','siteEdit')">编辑</a></li>
+							        <li><a href="#" onclick="dispatcher.changeConsole('console-sitePlus','sitePlus')">添加</a></li>
+							    </ul>
+							</div>			
+						</div>	 					
+	 				</div>
+	 				<div id="console-mapSet" class="col-md-5 col-md-offset-4 panel panel-default console-item">
+	 					<form role="form">
+		 					<div class="form-group">
+							  	<label class="col-md-3">坐标显示      :</label>
+							    <div class="col-md-7">
+							    	<p>
+							      		<button id="Coords" type="button" class="btn btn-default" onclick="toggleShow('Coords')">开启</button>
+							      	</p>
+							    </div>						
+						    </div>
+						    <div class="clearfix"></div>	
+						    <div class="form-group">
+							  	<label class="col-md-3">板块显示      :</label>
+							    <div class="col-md-7">
+							    	<p>
+							      		<button id="Blocks" type="button" class="btn btn-default" onclick="toggleShow('Blocks')">隐藏</button>
+							      	</p>
+							    </div>						
+						    </div>
+						    <div class="clearfix"></div>
+						    <div class="form-group">
+							  	<label class="col-md-3">道路显示      :</label>
+							    <div class="col-md-7">
+							    	<p>
+							      		<button id="Lines" type="button" class="btn btn-default" onclick="toggleShow('Lines')">隐藏</button>
+							      	</p>
+							    </div>						
+						    </div>
+						    <div class="clearfix"></div>
+						    <div class="form-group">
+							  	<label class="col-md-3">站点显示      :</label>
+							    <div class="col-md-7">
+							    	<p>
+							      		<button id="Points" type="button" class="btn btn-default" onclick="toggleShow('Points')">隐藏</button>
+							      	</p>
+							    </div>						
+						    </div>
+						    <div class="clearfix"></div>
+						    <div class="form-group">
+							  	<label class="col-md-3">名称显示      :</label>
+							    <div class="col-md-7">
+							    	<p>
+							      		<button id="name" type="button" class="btn btn-default" onclick="toggleShow('name')">开启</button>
+							      	</p>
+							    </div>						
+						    </div>
+						    <div class="clearfix"></div>
+					    </form>
+	 				</div>
+	 				<div id="console-blockPlus" class="col-md-6 col-md-offset-3 panel panel-default console-item">
+	 					<form role="form">
+		 					<div class="form-group">
+							  	<label class="col-md-3">区域名称      :</label>
+							    <div class="col-md-7">
+							    	<p>
+							      		<input type="text" class="form-control"  placeholder="请输入区域名称">
+							      	</p>
+							    </div>						
+						    </div>
+						    <div class="clearfix"></div>	
+						    <div class="form-group">
+							    <label class="col-md-3 control-label">地形      :</label>
+							    <div class="col-md-9">
+							    	<p>
+							     		<button type="button" class="btn btn-default cover-map">连续单击进行框选</button>
+							     	</p>
+							    </div>
+						    </div>
+						    <div class="clearfix"></div>
+					     	<div class="form-group button-submit">
+						    	<button type="button" class="btn btn-default">确认</button>
+						    </div>
+						    
+					    </form>
+	 				</div>
+	 				<div id="console-sitePlus" class="col-md-6 col-md-offset-3 panel panel-default console-item">
+	 					<form role="form">
+		 					<div class="form-group">
+							  	<label class="col-md-3">站点名称      :</label>
+							    <div class="col-md-7">
+							    	<p>
+							      		<input type="text" class="form-control"  placeholder="请输入站点名称">
+							      	</p>
+							    </div>						
+						    </div>
+						    <div class="clearfix"></div>	
+						    <div class="form-group">
+							    <label class="col-md-3 control-label">位置      :</label>
+							    <div class="col-md-9">
+							    	<p>
+							     		<button type="button" class="btn btn-default coords-choose">单击选择位置</button>
+							     	</p>
+							    </div>
+						    </div>
+						    <div class="clearfix"></div>
+						    <div class="form-group">
+							    <label class="col-md-3 control-label">站点说明      :</label>
+							    <div class="col-md-7">
+							    	<p>
+							      		<input type="text" class="form-control"  placeholder="请输入简要站点说明">
+							      	</p>
+							    </div>
+						    </div>
+						    <div class="clearfix"></div>
+						    <div class="form-group">
+						    	<label for="name" class="col-md-3 control-label">选择列表</label>
+						    	<div class="col-md-7">
+							    	<select class="form-control col-md-9">
+									<option>控制点</option>
+									<option>采矿点</option>
+									<option>交通点</option>
+									<option>通信基站</option>
+									</select>
+							    </div>
+								
+						    </div>
+						    <div class="clearfix"></div>
+							<br/><br/>
+					     	<div class="form-group button-submit">
+						    	<button id="sub-site" type="button" class="btn btn-default">确认</button>
+						    </div>
+						    
+					    </form>
+	 				</div>
+	 				<div id="console-roadPlus" class="col-md-6 col-md-offset-3 panel panel-default console-item">
+	 					<form role="form">
+		 					<div class="form-group">
+							  	<label class="col-md-3">道路名称:</label>
+							    <div class="col-md-7">
+							    	<p>
+							      		<input type="text" class="form-control"  placeholder="请输入道路名称">
+							      	</p>
+							    </div>						
+						    </div>
+						    <div class="clearfix"></div>
+						    <div class="form-group">
+							    <label class="col-md-3 control-label">道路说明:</label>
+							    <div class="col-md-7">
+							    	<p>
+							      		<input type="text" class="form-control"  placeholder="请输入简要道路说明">
+							      	</p>
+							    </div>
+						    </div>
+						    <div class="clearfix"></div>	
+						    <div class="form-group">
+							    <label class="col-md-3 control-label">路线:</label>
+							    <div class="col-md-9">
+							    	<p>
+							     		<button type="button" data-toggle="tooltip" data-placement="top" 
+							     		title="单击后在地图中连续单击以画一条路线" class="btn btn-default road-choose">单击选择位置</button>
+							     	</p>
+							    </div>
+						    </div>
+						    <div class="clearfix"></div>
+					     	<div class="form-group button-submit">
+						    	<button id="sub-road" type="button" class="btn btn-default">确认</button>
+						    </div>
+						    
+					    </form>
+	 				</div>
+ 					<div id="console-task" class="col-md-6 col-md-offset-3 panel panel-default console-item">
+ 						<form role="form">
+		 					<div class="form-group">
+							  	<label class="col-md-3">任务名称      :</label>
+							    <div class="col-md-7">
+							    	<p>
+							      		<input type="text" class="form-control"  placeholder="请输入任务名称">
+							      	</p>
+							    </div>						
+						    </div>
+						    <div class="clearfix"></div>	
+						    <div class="form-group">
+							    <label class="col-md-3 control-label">起点      :</label>
+							    <div class="col-md-9">
+							    	<p>
+							     		<button id="task-map-start" type="button" data-toggle="tooltip" data-placement="top" 
+							     		title="单击后在地图单击以选择某一站点作为起点" class="btn btn-default site-choose">选择起点</button>
+							     	</p>
+							    </div>
+						    </div>
+						    <div class="clearfix"></div>
+						    <div class="form-group">
+							    <label class="col-md-3 control-label">终点      :</label>
+							    <div class="col-md-9">
+							    	<p>
+							     		<button id="task-map-end" type="button" data-toggle="tooltip" data-placement="top" 
+							     		title="单击后在地图单击以选择某一站点作为终点" class="btn btn-default site-choose">选择终点</button>
+							     	</p>
+							    </div>
+						    </div>
+						    <div class="clearfix"></div>
+						    <div class="form-group">
+							    <label class="col-md-3 control-label">参数      :</label>
+							    <div class="col-md-7">
+							    	<p>
+							     		<input type="text" class="form-control"  placeholder="输入参数">
+							     	</p>
+							    </div>
+						    </div>
+						    <br/><br/><br/>
+						    <div class="clearfix"></div>
+					     	<div class="form-group button-submit">
+							    <button  id="sub-task" type="button" class="btn btn-default">自动调度</button>
+						    	<button type="button" class="btn btn-default">人工调度</button>
+						    </div>
+						    
+					    </form>
+ 					</div>
+ 					<div id="console-table" class="console-item">
+ 						<table id="showTable" ></table>
+ 					</div>
+ 					<div id="console-chart" class="console-item">
+ 						<div id="showChart"></div>
+ 					</div>		
+	 			</div>
+			</div>
+        </div>
+      </div>
+    </div>
+	
+	
+	<!-- BEGIN import js -->
+
+	<script src="js/common/jquery-3.3.1.min.js" type="text/javascript"></script>
+	<script src="js/common/sockjs.min.js" type="text/javascript"></script>
+	<script src="js/common/stomp.min.js" type="text/javascript"></script>
+	<script src="js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/leaflet/leaflet.js" type="text/javascript"></script>
+	<script src="js/bootstrap/bootstrap-table.min.js" type="text/javascript"></script>
+	<script src="js/bootstrap/bootstrap-table-zh-CN.js" type="text/javascript"></script>
+	<script src="js/echarts/echarts.min.js" type="text/javascript"></script>
+	
+
+	<!-- END  import js -->
+	
+	<!-- BEGIN self js -->
+	
+	<!-- mapUtil.js地图工具，在main之前 -->
+	<script src="js/common/mapUtil.js" type="text/javascript"></script>	
+	<!-- variables.js全局性的变量，必须在main之前 -->
+	<script src="js/mainPage/variable.js" type="text/javascript"></script>
+	<script src="js/mainPage/main.js" type="text/javascript"></script>
+	
+	<!-- END self js -->
+	
+</body>
+</html>
+
+

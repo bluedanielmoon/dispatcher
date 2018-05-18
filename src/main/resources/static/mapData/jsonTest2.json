@@ -1,0 +1,345 @@
+{
+	"block": {
+		"type": "Feature",
+		"properties": {
+			"popupContent": "这是矿区"
+		},
+		"geometry": {
+			"type": "MultiPolygon",
+			"coordinates": [
+				[
+					[
+						[108.99588, 34.22673],
+						[108.99488, 34.22619],
+						[108.99536, 34.22555],
+						[108.99646, 34.22598]
+					]
+				]
+			]
+		},
+		"id": "0"
+	},
+	"lines": {
+		"type": "FeatureCollection",
+		"features": [{
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[108.99629, 34.22601],
+					[108.99581, 34.22581]
+				]
+			},
+			"properties": {
+				"name": "衡山路",
+				"popupContent": "这是路 001",
+				"underConstruction": false
+			},
+			"id": "1"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[108.99581, 34.22581],
+					[108.99525, 34.22588]
+				]
+			},
+			"properties": {
+				"name": "泰山路",
+				"popupContent": "这是路 002",
+				"underConstruction": false
+			},
+			"id": "2"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[108.99525, 34.22588],
+					[108.99504, 34.22618]
+				]
+			},
+			"properties": {
+				"name": "萧山路",
+				"popupContent": "这是路 003",
+				"underConstruction": false
+			},
+			"id": "3"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[108.99504, 34.22618],
+					[108.99545, 34.2264]
+				]
+			},
+			"properties": {
+				"name": "云梦路",
+				"popupContent": "这是路 004",
+				"underConstruction": false
+			},
+			"id": "4"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[108.99545, 34.2264],
+					[108.99588, 34.22627]
+				]
+			},
+			"properties": {
+				"name": "萧何路",
+				"popupContent": "这是路 005",
+				"underConstruction": false
+			},
+			"id": "5"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[108.99588, 34.22627],
+					[108.99629, 34.22601]
+				]
+			},
+			"properties": {
+				"name": "落雨路",
+				"popupContent": "这是路 006",
+				"underConstruction": false
+			},
+			"id": "6"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[108.99629, 34.22601],
+					[108.99577, 34.22597]
+				]
+			},
+			"properties": {
+				"name": "繁华路",
+				"popupContent": "这是路 007",
+				"underConstruction": false
+			},
+			"id": "7"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[108.99577, 34.22597],
+					[108.99581, 34.22581]
+				]
+			},
+			"properties": {
+				"name": "繁华路",
+				"popupContent": "这是路 008",
+				"underConstruction": false
+			},
+			"id": "8"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[108.99577, 34.22597],
+					[108.99525, 34.22588]
+				]
+			},
+			"properties": {
+				"name": "繁华路",
+				"popupContent": "这是路 009",
+				"underConstruction": false
+			},
+			"id": "9"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[108.99525, 34.22588],
+					[108.99536, 34.22617]
+				]
+			},
+			"properties": {
+				"name": "繁华路",
+				"popupContent": "这是路 010",
+				"underConstruction": false
+			},
+			"id": "10"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+					[108.99504, 34.22618],
+					[108.99536, 34.22617]
+				]
+			},
+			"properties": {
+				"name": "繁华路",
+				"popupContent": "这是路 011",
+				"underConstruction": false
+			},
+			"id": "11"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "MultiLineString",
+				"coordinates": [
+					[
+						[108.99545, 34.2264],
+						[108.99545, 34.22636]
+					],
+					[
+						[108.99545, 34.22636],
+						[108.99544, 34.22632]
+					],
+					[
+						[108.99544, 34.22632],
+						[108.99536, 34.22627]
+					],
+					[
+						[108.99536, 34.22627],
+						[108.99539, 34.2262]
+					],
+					[
+						[108.99539, 34.2262],
+						[108.99536, 34.22617]
+					]
+				]
+			},
+			"properties": {
+				"name": "繁华路",
+				"popupContent": "这是路 012",
+				"underConstruction": false
+			},
+			"id": "12"
+		}, {
+			"type": "Feature",
+			"geometry": {
+				"type": "MultiLineString",
+				"coordinates": [
+					[
+						[108.99588, 34.22627],
+						[108.99575, 34.2262]
+					],
+					[
+						[108.99575, 34.2262],
+						[108.99556, 34.22616]
+					],
+					[
+						[108.99556, 34.22616],
+						[108.99536, 34.22617]
+					]
+				]
+			},
+			"properties": {
+				"name": "繁华路",
+				"popupContent": "这是路 013",
+				"underConstruction": false
+			},
+			"id": "13"
+		}]
+	},
+	"sites": {
+		"type": "FeatureCollection",
+		"features": [{
+			"type": "Feature",
+			"properties": {
+				"name": "兰亭",
+				"popupContent": "站点A"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [108.99629, 34.22601]
+			},
+			"id": "20"
+		}, {
+			"type": "Feature",
+			"properties": {
+				"name": "玉露",
+				"popupContent": "站点B"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [108.99581, 34.22581]
+			},
+			"id": "21"
+		}, {
+			"type": "Feature",
+			"properties": {
+				"name": "河姬",
+				"popupContent": "站点C"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [108.99525, 34.22588]
+			},
+			"id": "22"
+		}, {
+			"type": "Feature",
+			"properties": {
+				"name": "贤客",
+				"popupContent": "站点D"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [108.99504, 34.22618]
+			},
+			"id": "23"
+		}, {
+			"type": "Feature",
+			"properties": {
+				"name": "贤客",
+				"popupContent": "站点E"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [108.99545, 34.2264]
+			},
+			"id": "24"
+		}]
+	},
+	"middles": {
+		"type": "FeatureCollection",
+		"features": [{
+			"type": "Feature",
+			"properties": {
+				"name": "交叉口1",
+				"popupContent": "交叉口1"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [108.99577, 34.22597]
+			},
+			"id": "30"
+		}, {
+			"type": "Feature",
+			"properties": {
+				"name": "交叉口2",
+				"popupContent": "交叉口2"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [108.99588, 34.22627]
+			},
+			"id": "31"
+		}, {
+			"type": "Feature",
+			"properties": {
+				"name": "交叉口3",
+				"popupContent": "交叉口3"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [108.99536, 34.22617]
+			},
+			"id": "32"
+		}]
+	}
+}
