@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.map.mapbean.MapData;
 import com.map.cache.Cache;
 import com.map.service.MapService;
+import com.map.service.UserService;
 
 @EnableScheduling
 @Controller
@@ -24,6 +25,8 @@ import com.map.service.MapService;
 public class MapController {
 	
 	private static Logger logger=LoggerFactory.getLogger(MapController.class);
+	@Autowired  
+    private UserService userService;  
 	
 	private MapService mapServ;
 	@Autowired
@@ -34,7 +37,6 @@ public class MapController {
 	@RequestMapping(path = "/data", method = RequestMethod.GET)
 	@ResponseBody
 	public MapData getMap(HttpServletRequest request) {
-		
 		return Cache.mapdata;
 	}
 	

@@ -8,6 +8,7 @@ import java.util.Map;
 import com.map.domain.Car;
 import com.map.domain.Task;
 import com.map.mapbean.MapData;
+import com.map.service.UserService;
 import com.map.util.FileUtil;
 import com.map.util.GeosonUtil;
 
@@ -100,5 +101,8 @@ public class Cache {
 	
 
 		mapdata=GeosonUtil.StringToObject(FileUtil.readSource(), MapData.class);
+		
+	
+		
 	}
 }

@@ -37,6 +37,7 @@ public class Server{
 	
 	public void start() throws IOException {
 		System.out.println("交互Server启动...");
+		
 		while (true) {
 			for(Integer i:clients.keySet()){
 				System.out.println("车辆的id   "+i);
